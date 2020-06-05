@@ -7,6 +7,7 @@ from PyQt5.uic import loadUi
 from fbs_runtime.application_context.PyQt5 import ApplicationContext, cached_property
 from helpers.convertions import convert_bytes
 from helpers.validators import is_url
+from helpers._gui import UI
 
 # download_ui, _ = loadUiType(path.join(path.dirname(__file__), "../resources/download.ui"))
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -16,7 +17,7 @@ RESOURCES_PATH = os.path.join(BASE_DIR, 'resources/base/')
 class Download(QMainWindow):
     def __init__(self, parent, total_size, url, save_location, **kwargs):
         super().__init__(parent)
-        loadUi(RESOURCES_PATH + 'download.ui', self)
+        loadUi(UI.get_design("download.ui"), self)
         self.parent = parent
         self.parent.UrlText.setText("")
         self.parent.SaveLocationText.setText("")
@@ -52,7 +53,7 @@ class Download(QMainWindow):
         ds_data = convert_bytes(downloaded)
         self.dsLabel.setText(f"Downloaded Size({ds_data['type']})")
         rs_data = convert_bytes(remaining)
-        self.RSLabel.setText(f"Downloaded Size({rs_data['type']})")
+        self.RSLabel.setText(f"Remaining Size({rs_data['type']})")
         self.RSizeLcd.display(rs_data['value'])
         self.DSizeLcd.display(ds_data['value'])
         if totalsize > 0:
@@ -198,3 +199,7 @@ if __name__ == '__main__':
 
     # https://57-2.files-mutaz.net/W7_Pro_SP1_En_x64.iso
 # https://doc-0c-24-docs.googleusercontent.com/docs/securesc/eta4tnfkm2srtblrsqufrc1om6v6ec1k/3sgb340b7uq59raau630ibq5r3b4gnuh/1591282575000/15530971891307717937/18240035718256758723/11ltIeHHwFWd5IsBDf-YNY4JsGljfUs3I?e=download&authuser=0
+
+# read
+# https://towardsdatascience.com/how-to-download-files-using-python-part-2-19b95be4cdb5
+# https://stackoverflow.com/questions/51812449/how-to-resume-file-download-in-python-3-5

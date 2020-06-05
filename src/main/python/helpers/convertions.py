@@ -17,6 +17,8 @@ def convert_bytes(size):
 
     # Driver code
     idx = BinarySearch(dt_size, int(size))
+    if idx == -1:
+        idx = 0
     ret = dict()
 
     ret['type'] = types[idx]

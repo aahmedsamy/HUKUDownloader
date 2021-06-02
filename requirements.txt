@@ -11,4 +11,4 @@ PyQt5==5.9.2
 PyQt5-stubs==5.14.2.2
 requests==2.23.0
 sip==4.19.8
-urllib3==1.25.9
+urllib3==1.26.5
